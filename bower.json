@@ -1,0 +1,29 @@
+{
+  "name": "blih-gui",
+  "description": "An cross-platform application to manage Blih.",
+  "main": "source/main.js",
+  "authors": [
+    "Walter Bonetti"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "blih",
+    "gui",
+    "epitech"
+  ],
+  "homepage": "https://github.com/IniterWorker/blih-gui",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.6",
+    "angular-route": "^1.5.6",
+    "bootstrap": "^3.3.6",
+    "jquery": "^2.2.4"
+  }
+}

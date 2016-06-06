@@ -1,0 +1,43 @@
+<!--
+@Author: Walter Bonetti <IniterWorker>
+@Date:   2016-06-06T17:58:01+02:00
+@Email:  walter.bonetti@epitech.eu
+@Last modified by:   IniterWorker
+@Last modified time: 2016-06-06T21:43:19+02:00
+@License: MIT
+-->
+
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <title>Blih GUI</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <!-- build:css assets/css/app.css -->
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <!-- endbuild -->
+  </head>
+  <body>
+    <!-- build:remove -->
+    <!-- Connect to server process -->
+    <script>require('electron-connect').client.create()</script>
+    <!-- end:build -->
+
+    <ng-view></ng-view>
+    <!-- Insert this line above script imports  -->
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <!-- build:js scripts/vendor.js -->
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- endbuild -->
+    <!-- Insert this line after script imports -->
+    <script>if (window.module) module = window.module;</script>
+    <!-- build:app scripts/app.js -->
+    <script src="./scripts/app.js"></script>
+    <script src="./scripts/blih/blihController.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>

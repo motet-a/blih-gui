@@ -1,0 +1,20 @@
+<!--
+@Author: Walter Bonetti <IniterWorker>
+@Date:   2016-06-06T19:41:00+02:00
+@Email:  walter.bonetti@epitech.eu
+@Last modified by:   IniterWorker
+@Last modified time: 2016-06-06T22:02:36+02:00
+@License: MIT
+-->
+
+<div class="wrapper">
+  <form ng-submit="connection(user)" name="auth" class="form-signin" ng-controller="blihController">
+    <h2 class="form-signin-heading">Auth</h2>
+    <input type="text" class="form-control" ng-model="user.login" placeholder="Login_x" required="" autofocus="" />
+    <input type="password" class="form-control" ng-model="user.password" placeholder="Password" required=""/>
+    <div ng-if="invalid.error == true">
+      <div class="alert alert-danger" role="alert">{{invalid.message}}</div>
+    </div>
+    <button class="btn btn-lg btn-success btn-block" type="submit">Login</button>
+  </form>
+</div>
