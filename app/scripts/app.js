@@ -13,12 +13,14 @@
     var _templateBase = './scripts';
 
     angular.module('app', [
-      'ngRoute'
+      'ngRoute',
+      'ngStorage',
+      'ui.bootstrap'
     ])
     .config(['$routeProvider', function ($routeProvider) {
       $routeProvider.when('/', {
-          templateUrl: _templateBase + '/blih/auth.html' ,
-          controller: 'blihController',
+          templateUrl: _templateBase + '/auth/auth.html' ,
+          controller: 'authController',
           controllerAs: '_ctrl'
       });
       $routeProvider.when('/main', {
@@ -27,7 +29,5 @@
           controllerAs: '_ctrl'
       });
       $routeProvider.otherwise({ redirectTo: '/' });
-        }
-    ]);
-
+    }]);
 })();

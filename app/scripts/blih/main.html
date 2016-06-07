@@ -7,4 +7,63 @@
 @License: MIT
 -->
 
-<h1> Access Granted ! </h1>
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+<div class="container">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#/main">Epitech</a>
+  </div>
+  <div id="navbar" class="navbar-collapse collapse">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#/main">Repositories</a></li>
+      <li><a href="#/setting">Settings</a></li>
+      <li><a href="#/Source">Source</a></li>
+      <li><a href="#/About">About</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <a ng-click="refresh()">
+          <span class="glyphicon glyphicon-reload" aria-hidden="true"></span>
+          Refresh
+        </a>
+      </li>
+      <li>
+        <a ng-click="disconnect()">
+          <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+          Logout
+        </a>
+      </li>
+    </ul>
+  </div><!--/.nav-collapse -->
+</div>
+</nav>
+
+<div class="container" style="padding-top: 80px;">
+<table class="table table-striped">
+  <thead style="color: white;">
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody ng-repeat="(key, value) in repositories">
+    <tr>
+      <th scope=row>{{key}}</th>
+      <td>{{value.name}}</td>
+      <td style="text-align:right;">
+        <button type="button" name="info" class="btn btn-warning">Info</button>
+        <button type="button" name="delete" class="btn btn-danger">delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+</div>

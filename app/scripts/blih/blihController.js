@@ -9,38 +9,31 @@
 
 (function () {
     'use strict';
-    var blihApi = require('blih-api');
-    var Blih;
-
     angular.module('app')
-        .controller('blihController', ['$scope', '$location', blihController]);
+        .controller('blihController', ['blihService', '$scope', '$location', '$localStorage', BlihController]);
 
-    function blihController($scope, $location)
+    function BlihController(blih, $scope, $location, $localStorage)
     {
-        $scope.user = {
-            login: '',
-            password: ''
-        }
+      $localStorage.$default({
+        repositories: []
+      });
+      $scope.repositories = $localStorage.repositories;
 
-        $scope.invalid = {
-          message: '',
-          error: false
-        };
+      $scope.disconnect = function () {
+          $location.path('/auth');
+      };
 
-        // TODO: rewrite a serviceBlih
-        $scope.repositories = [];
-        $scope.connection = function (user) {
-          Blih = new blihApi(user.login, user.password);
-          Blih.getRepositories(function (data) {
-            if (data.error !== undefined)
-              {
-                $scope.invalid.message = data.error;
-                $scope.invalid.error = true;
-                return ;
-              }
-            $location.path( "/main" );
-            return ;
-          });
-        };
+      $scope.refresh = function () {
+        blih.getRepositories().then(function (data) {
+          // success
+          console.log('success');
+          for (var key in data.repositories)
+            $localStorage.repositories.push({name: key});
+        },function (data) {
+          // error
+          console.log('error');
+          console.log(data)
+        });
+      }
     }
 }) ();

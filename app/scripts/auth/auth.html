@@ -7,14 +7,19 @@
 @License: MIT
 -->
 
+<script type="text/ng-template" id="alert.html">
+    <div class="alert alert-danger" role="alert">
+      <div ng-transclude></div>
+    </div>
+</script>
+
+
 <div class="wrapper">
-  <form ng-submit="connection(user)" name="auth" class="form-signin" ng-controller="blihController">
+  <form ng-submit="connection(user)" name="auth" class="form-signin" ng-controller="authController">
     <h2 class="form-signin-heading">Auth</h2>
     <input type="text" class="form-control" ng-model="user.login" placeholder="Login_x" required="" autofocus="" />
     <input type="password" class="form-control" ng-model="user.password" placeholder="Password" required=""/>
-    <div ng-if="invalid.error == true">
-      <div class="alert alert-danger" role="alert">{{invalid.message}}</div>
-    </div>
+    <uib-alert dismiss-on-timeout="3000" template-url="alert.html" ng-repeat="alert in alerts" close="closeAlert($index)">{{alert.msg}}</uib-alert>
     <button class="btn btn-lg btn-success btn-block" type="submit">Login</button>
   </form>
 </div>
