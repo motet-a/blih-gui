@@ -3,7 +3,7 @@
 * @Date:   2016-06-06T19:43:49+02:00
 * @Email:  walter.bonetti@epitech.eu
 * @Last modified by:   IniterWorker
-* @Last modified time: 2016-06-07T16:55:59+02:00
+* @Last modified time: 2016-06-07T18:33:00+02:00
 * @License: MIT
 */
 
@@ -17,10 +17,13 @@
       $scope.repositories = $localStorage.repositories;
 
       this.disconnect = function () {
+          $localStorage.repositories = [];
+          console.log($localStorage.repositories);
           $location.path('/auth');
       };
 
       this.refresh = function () {
+        console.log('refresh function');
         blih.getRepositories().then(function (data) {
           // success
           console.log('success');
@@ -31,6 +34,12 @@
           console.log('error');
           console.log(data)
         });
+      }
+
+      if ($localStorage.repositories.length == 0)
+      {
+        console.log('First loader');
+        this.refresh();
       }
     }
 }) ();

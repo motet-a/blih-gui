@@ -3,7 +3,7 @@
 @Date:   2016-06-06T00:19:14+02:00
 @Email:  walter.bonetti@epitech.eu
 @Last modified by:   IniterWorker
-@Last modified time: 2016-06-06T22:23:03+02:00
+@Last modified time: 2016-06-07T20:55:04+02:00
 @License: MIT
 -->
 
@@ -18,6 +18,13 @@ An cross-platform application to manage Blih.
 * Blih-api
 
 #### Developpement
+
+```sh
+cd app
+npm install
+cd ..
+npm install
+```
 
 Run with watching files
 
@@ -34,13 +41,14 @@ gulp build
 ```
 
 #### TODO:
-* Write a Blih Service
-* Write a Custom WorkSpace
-* Add, Remove, setAcl, Info repositories
-* Permanent Auth
-* Remove border
-* Gif Loader
-* Epitech Intra sync (autocomplete login)
+* Write a Blih Service (20%)
+* Write a Custom WorkSpace (0%)
+* Add, Remove, setAcl, Info repositories (0%)
+* List ssh-key, add, delete (0%)
+* Permanent Auth (20%)
+* Remove border (0%)
+* Gif Loader (0%)
+* Epitech Intra sync (autocomplete login) (0%)
 
 #### Auteur
 Walter Bonetti (bonett_w Epitech Lyon 2020)
