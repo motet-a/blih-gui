@@ -3,67 +3,69 @@
 @Date:   2016-06-06T21:24:20+02:00
 @Email:  walter.bonetti@epitech.eu
 @Last modified by:   IniterWorker
-@Last modified time: 2016-06-06T22:07:22+02:00
+@Last modified time: 2016-06-07T17:19:54+02:00
 @License: MIT
 -->
 
 
 <!-- Fixed navbar -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
-<div class="container">
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <a class="navbar-brand" href="#/main">Epitech</a>
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#/main">Epitech</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li ng-class=""><a href="#/main">Repositories</a></li>
+        <li ng-class=""><a href="#/setting">Settings</a></li>
+        <li ng-class=""><a href="#/Source">Source</a></li>
+        <li ng-class=""><a href="#/About">About</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a ng-click="_ctrl.refresh()">
+            <span class="glyphicon glyphicon-reload" aria-hidden="true"></span>
+            Refresh
+          </a>
+        </li>
+        <li>
+          <a ng-click="_ctrl.disconnect()">
+            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+            Logout
+          </a>
+        </li>
+      </ul>
+    </div><!--/.nav-collapse -->
   </div>
-  <div id="navbar" class="navbar-collapse collapse">
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#/main">Repositories</a></li>
-      <li><a href="#/setting">Settings</a></li>
-      <li><a href="#/Source">Source</a></li>
-      <li><a href="#/About">About</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li>
-        <a ng-click="refresh()">
-          <span class="glyphicon glyphicon-reload" aria-hidden="true"></span>
-          Refresh
-        </a>
-      </li>
-      <li>
-        <a ng-click="disconnect()">
-          <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-          Logout
-        </a>
-      </li>
-    </ul>
-  </div><!--/.nav-collapse -->
-</div>
 </nav>
 
-<div class="container" style="padding-top: 80px;">
-<table class="table table-striped">
-  <thead style="color: white;">
-    <tr>
-      <th>#</th>
-      <th>Name</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody ng-repeat="(key, value) in repositories">
-    <tr>
-      <th scope=row>{{key}}</th>
-      <td>{{value.name}}</td>
-      <td style="text-align:right;">
-        <button type="button" name="info" class="btn btn-warning">Info</button>
-        <button type="button" name="delete" class="btn btn-danger">delete</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
+<div class="container"style="padding-top: 80px;">
+  <input type="text" name="search" ng-model="searchText" placeholder="Search">
+  <div class="container">
+    <table class="table table-striped">
+      <thead style="color: white;">
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody ng-repeat="(key, value) in repositories | filter:searchText">
+        <tr>
+          <th scope=row>{{key}}</th>
+          <td>{{value.name}}</td>
+          <td style="text-align:right;">
+            <button type="button" name="info" class="btn btn-warning">Info</button>
+            <button type="button" name="delete" class="btn btn-danger">delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

@@ -3,7 +3,7 @@
 @Date:   2016-06-06T19:41:00+02:00
 @Email:  walter.bonetti@epitech.eu
 @Last modified by:   IniterWorker
-@Last modified time: 2016-06-06T22:02:36+02:00
+@Last modified time: 2016-06-07T17:18:41+02:00
 @License: MIT
 -->
 
@@ -15,11 +15,11 @@
 
 
 <div class="wrapper">
-  <form ng-submit="connection(user)" name="auth" class="form-signin" ng-controller="authController">
+  <form ng-submit="_ctrl.connection(user)" name="auth" class="form-signin" ng-controller="authController">
     <h2 class="form-signin-heading">Auth</h2>
     <input type="text" class="form-control" ng-model="user.login" placeholder="Login_x" required="" autofocus="" />
     <input type="password" class="form-control" ng-model="user.password" placeholder="Password" required=""/>
-    <uib-alert dismiss-on-timeout="3000" template-url="alert.html" ng-repeat="alert in alerts" close="closeAlert($index)">{{alert.msg}}</uib-alert>
+    <uib-alert dismiss-on-timeout="3000" template-url="alert.html" ng-repeat="alert in alerts" close="_ctrl.closeAlert($index)">{{alert.msg}}</uib-alert>
     <button class="btn btn-lg btn-success btn-block" type="submit">Login</button>
   </form>
 </div>

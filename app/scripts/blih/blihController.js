@@ -3,7 +3,7 @@
 * @Date:   2016-06-06T19:43:49+02:00
 * @Email:  walter.bonetti@epitech.eu
 * @Last modified by:   IniterWorker
-* @Last modified time: 2016-06-06T22:11:57+02:00
+* @Last modified time: 2016-06-07T16:55:59+02:00
 * @License: MIT
 */
 
@@ -14,16 +14,13 @@
 
     function BlihController(blih, $scope, $location, $localStorage)
     {
-      $localStorage.$default({
-        repositories: []
-      });
       $scope.repositories = $localStorage.repositories;
 
-      $scope.disconnect = function () {
+      this.disconnect = function () {
           $location.path('/auth');
       };
 
-      $scope.refresh = function () {
+      this.refresh = function () {
         blih.getRepositories().then(function (data) {
           // success
           console.log('success');
