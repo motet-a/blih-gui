@@ -45,27 +45,33 @@
   </div>
 </nav>
 
-<div class="container"style="padding-top: 80px;">
-  <input type="text" name="search" ng-model="searchText" placeholder="Search">
-  <div class="container">
-    <table class="table table-striped">
-      <thead style="color: white;">
-        <tr>
-          <th>#</th>
-          <th>Name</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody ng-repeat="(key, value) in repositories | filter:searchText">
-        <tr>
-          <th scope=row>{{key}}</th>
-          <td>{{value.name}}</td>
-          <td style="text-align:right;">
-            <button type="button" name="info" class="btn btn-warning">Info</button>
-            <button type="button" name="delete" class="btn btn-danger">delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+<div class="container" style="margin-top: 80px">
+  <!-- Example row of columns -->
+  <div class="row" ng-repeat="(key, value) in repositories | filter:searchText"
+  style="background: #4F5D61; margin-bottom: 10px; padding: 10px; color: #00BFFF;">
+    <div class="col-sm-4">
+      <h3>{{value.name}}</h3>
+
+    </div>
+    <div class="col-sm-6">
+      <div class="row">
+        <h3>Description</h3>
+        <p>
+        Date : {{value.info.creation_time * 1000 | date:'yyyy-MM-dd HH:mm:ss'}}<br>
+        UUID : {{value.info.uuid}}<br>
+        Url : {{value.info.url}}</p>
+        <p>{{value.info.description}}</p>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+            <h4>Acl rights</h4>
+            {{value.info | json}}
+        </div>
+      </div>
+   </div>
+    <div class="col-sm-2">
+      <h3>Tools</h3>
+      <button type="button" class="btn btn-warning" name="button">Info</button>
+      <button type="button" class="btn btn-danger" name="button">Delete</button>
+    </div>
   </div>
-</div>

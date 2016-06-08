@@ -19,6 +19,8 @@
       generateToken: generateToken,
       getRepositories: getRepositories,
       getSshKey: getSshKey,
+      createSshKey: createSshKey,
+      deleteSshKey: deleteSshKey,
       getInfoRepository: getInfoRepository,
       createRepository: createRepository,
       setAclRepository: setAclRepository,
@@ -68,19 +70,49 @@
     }
 
     function getInfoRepository(repository) {
-
+      console.log(repository);
+      var deffered = $q.defer();
+      Blih.getRepositoriesInfo($localStorage.userData, repository.name, function (data) {
+          if (data.error)
+            deffered.reject(data.error);
+          deffered.resolve(data);
+      });
+      return deffered.promise;
     };
 
     function createRepository(repository) {
-
+      var deffered = $q.defer();
+      if (repository.type === undefined
+      || repository.name === undefined)
+      {
+        deffered.reject("Error: on undefined value.");
+        return deffered.promise;
+      }
+      Blih.createRepository($localStorage.userData, repository.name, function (data) {
+        if (data.error)
+          deffered.reject(data.error);
+        deffered.resolve(data);
+      })
+      return deffered.promise;
     };
 
     function setAclRepository(repository) {
-
+      // Add for one
+      // Add acl with bool change
     };
 
     function deleteRepository(repository) {
+      console.log('call delete repository: ' + repository.name);
+    };
 
+    /* TODO: use spec format */
+    function deleteSshKey(sshKey) {
+      console.log('call delete ssh: ');
+      console.log(sshKey);
+    };
+
+    function createSshKey(sshKey) {
+      console.log(sshKey);
     };
   };
 }) ();

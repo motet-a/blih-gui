@@ -26,14 +26,32 @@
         console.log('refresh function');
         blih.getRepositories().then(function (data) {
           // success
+          localStorage.repositories = [];
           console.log('success');
           for (var key in data.repositories)
-            $localStorage.repositories.push({name: key});
+            $localStorage.repositories.push({name: key, info: {}});
         },function (data) {
           // error
           console.log('error');
           console.log(data)
         });
+        this.repositoriesInfo();
+      }
+
+      this.repositoryInfo = function (repository) {
+        blih.getInfoRepository(repository).then(function (data) {
+          repository.info = data.message;
+        },
+        function (error) {
+          console.log(error);
+        });
+      };
+
+      this.repositoriesInfo = function () {
+        for (var elm in $localStorage.repositories)
+        {
+          this.repositoryInfo($localStorage.repositories[elm]);
+        }
       }
 
       if ($localStorage.repositories.length == 0)
