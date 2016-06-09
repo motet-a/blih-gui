@@ -8,7 +8,7 @@
 -->
 
 # blih-gui
-An cross-platform application to manage Blih.
+A cross-platform application to manage Blih.
 
 #### Technologies
 * Electron
@@ -41,14 +41,17 @@ gulp build
 ```
 
 #### TODO:
-* Write a Blih Service (20%)
-* Write a Custom WorkSpace (0%)
-* Add, Remove, setAcl, Info repositories (0%)
+* Write a Blih Service (80%)
+* Write a Custom WorkSpace (10%)
+* Add, Remove, setAcl, Info repositories (50%)
 * List ssh-key, add, delete (0%)
-* Permanent Auth (20%)
+* Permanent Auth (100%)
 * Remove border (0%)
 * Gif Loader (0%)
 * Epitech Intra sync (autocomplete login) (0%)
+* SetAcl by team (0%)
+* Custom team configuration (0%)
+* Setting (0%)
 
 #### Auteur
 Walter Bonetti (bonett_w Epitech Lyon 2020)
