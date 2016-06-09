@@ -21,6 +21,7 @@
       getSshKey: getSshKey,
       createSshKey: createSshKey,
       deleteSshKey: deleteSshKey,
+      getAclRepository: getAclRepository,
       getInfoRepository: getInfoRepository,
       createRepository: createRepository,
       setAclRepository: setAclRepository,
@@ -70,10 +71,9 @@
     }
 
     function getInfoRepository(repository) {
-      console.log(repository);
       var deffered = $q.defer();
       Blih.getRepositoriesInfo($localStorage.userData, repository.name, function (data) {
-          if (data.error)
+          if (data.error !== undefined)
             deffered.reject(data.error);
           deffered.resolve(data);
       });
@@ -89,6 +89,16 @@
         return deffered.promise;
       }
       Blih.createRepository($localStorage.userData, repository.name, function (data) {
+        if (data.error)
+          deffered.reject(data.error);
+        deffered.resolve(data);
+      })
+      return deffered.promise;
+    };
+
+    function getAclRepository(repository) {
+      var deffered = $q.defer();
+      Blih.getAcl($localStorage.userData, repository.name, function (data) {
         if (data.error)
           deffered.reject(data.error);
         deffered.resolve(data);

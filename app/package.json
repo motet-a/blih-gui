@@ -21,6 +21,6 @@
     "rcedit": "^0.5.0"
   },
   "dependencies": {
-    "blih-api": "^1.0.3"
+    "blih-api": "^1.0.4"
   }
 }

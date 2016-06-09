@@ -18,28 +18,42 @@
 
       this.disconnect = function () {
           $localStorage.repositories = [];
-          console.log($localStorage.repositories);
+          $localStorage.userData = {};
           $location.path('/auth');
       };
 
+      var that = this;
       this.refresh = function () {
         console.log('refresh function');
+        $localStorage.repositories = [];
+        console.log($localStorage.repositories);
         blih.getRepositories().then(function (data) {
-          // success
-          localStorage.repositories = [];
-          console.log('success');
           for (var key in data.repositories)
-            $localStorage.repositories.push({name: key, info: {}});
+            {
+              $localStorage.repositories.push({name: key, type: "git", info: {}, acl: {}});
+            }
         },function (data) {
-          // error
-          console.log('error');
-          console.log(data)
+          console.error('error when update repositories');
+        }).then(function () {
+          that.repositoriesInfo();
+          that.repositoriesAcl();
+        },
+        function (error) {
+          console.error('error when update');
+        }).then(function () {
+          $scope.repositories = $localStorage.repositories;
+        }, function () {
+
         });
-        this.repositoriesInfo();
+      }
+
+      this.clearRepositories = function () {
+        $localStorage.repositories = [];
+        $scope.repositories = $localStorage.repositories;
       }
 
       this.repositoryInfo = function (repository) {
-        blih.getInfoRepository(repository).then(function (data) {
+        return blih.getInfoRepository(repository).then(function (data) {
           repository.info = data.message;
         },
         function (error) {
@@ -47,10 +61,34 @@
         });
       };
 
+      this.repositoryAcl = function (repository) {
+        return blih.getAclRepository(repository).then(function (data) {
+          console.log(data);
+          repository.acl = data;
+        }, function () {
+          console.error('error when getAcl rights');
+        })
+      };
+
       this.repositoriesInfo = function () {
         for (var elm in $localStorage.repositories)
         {
-          this.repositoryInfo($localStorage.repositories[elm]);
+          this.repositoryInfo($localStorage.repositories[elm]).then(function () {
+            // succes
+          },function () {
+            // error
+          });
+        }
+      };
+
+      this.repositoriesAcl = function () {
+        for (var elm in $localStorage.repositories)
+        {
+          this.repositoryAcl($localStorage.repositories[elm]).then(function () {
+            // success
+          },function () {
+            // error
+          });
         }
       }
 

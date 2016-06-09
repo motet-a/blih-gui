@@ -14,6 +14,9 @@
 
     function AuthController(blih, $scope, $location, $localStorage)
     {
+        if ($localStorage.userData.status == 1)
+          $location.path('/main');
+
         $localStorage.$default({
           repositories: [],
           userData: {
@@ -36,6 +39,7 @@
             user.status = 0;
 
             blih.connect(user).then(function (data) {
+              $localStorage.userData.status = 1;
               $location.path('/main');
             },
             function (data) {
