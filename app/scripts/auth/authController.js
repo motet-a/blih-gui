@@ -14,9 +14,6 @@
 
     function AuthController(blih, $scope, $location, $localStorage)
     {
-        if ($localStorage.userData.status == 1)
-          $location.path('/main');
-
         $localStorage.$default({
           repositories: [],
           userData: {
@@ -26,6 +23,10 @@
             status: 0
           }
         });
+
+        if ($localStorage.userData.status == 1)
+          $location.path('/main');
+
         $scope.user = {};
         $scope.alerts = [];
 
