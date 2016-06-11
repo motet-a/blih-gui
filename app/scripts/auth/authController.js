@@ -2,8 +2,8 @@
 * @Author: Walter Bonetti <IniterWorker>
 * @Date:   2016-06-06T19:43:49+02:00
 * @Email:  walter.bonetti@epitech.eu
-* @Last modified by:   IniterWorker
-* @Last modified time: 2016-06-07T16:50:10+02:00
+* @Last modified by:   initerworker
+* @Last modified time: 2016-06-11T00:20:50+02:00
 * @License: MIT
 */
 
@@ -14,17 +14,7 @@
 
     function AuthController(blih, $scope, $location, $localStorage)
     {
-        $localStorage.$default({
-          repositories: [],
-          userData: {
-            login: '',
-            password: '',
-            token: '',
-            status: 0
-          }
-        });
-
-        if ($localStorage.userData.status == 1)
+        if ($localStorage.blihData.userData.status == 1)
           $location.path('/main');
 
         $scope.user = {};
@@ -40,12 +30,14 @@
             user.status = 0;
 
             blih.connect(user).then(function (data) {
-              $localStorage.userData.status = 1;
+              $localStorage.blihData.userData.status = 1;
               $location.path('/main');
             },
             function (data) {
               $scope.alerts.push({style: 'danger', msg: data});
             });
         };
+
+
     }
 }) ();

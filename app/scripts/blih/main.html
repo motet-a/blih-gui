@@ -7,121 +7,40 @@
 @License: MIT
 -->
 
-<!-- Fixed navbar -->
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#/main">Epitech</a>
+<div class="container container-margin">
+  <div class="row" style="margin-bottom:20px;">
+    <div class="col-md-12">
+      <div class="input-group input-group-lg">
+        <span class="input-group-addon" id="sizing-addon1">Search</span>
+        <input type="text" class="form-control" placeholder="Repository" ng-model="searchReposiroty" aria-describedby="sizing-addon1">
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-info" ng-click="getRepostories()">
+            <span class="glyphicon glyphicon-refresh"> </span> Refresh
+          </button>
+      </span>
+      </div>
     </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li ng-class=""><a href="#/main">Repositories</a></li>
-        <li ng-class=""><a href="#/ssh">Ssh</a></li>
-        <li ng-class=""><a href="#/setting">Settings</a></li>
-        <li ng-class=""><a href="#/Source">Source</a></li>
-        <li ng-class=""><a href="#/About">About</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a ng-click="_ctrl.clearRepositories()">
-            <span class="glyphicon glyphicon-reload" aria-hidden="true"></span>
-            Clear
-          </a>
-        </li>
-        <li>
-          <a ng-click="_ctrl.refresh()">
-            <span class="glyphicon glyphicon-reload" aria-hidden="true"></span>
-            Refresh
-          </a>
-        </li>
-        <li>
-          <a ng-click="_ctrl.disconnect()">
-            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-            Logout
-          </a>
-        </li>
-      </ul>
-    </div><!--/.nav-collapse -->
   </div>
-</nav>
 
-  <!-- Example row of columns -->
-<div class="container" style="margin-top: 110px">
-
-  <div class="row form-group">
-    <input type="text-align" class="form-control" ng-model="searchText" placeholder="Search">
+  <!-- template data cardView -->
+  <div class="row" ng-repeat="(key, value) in repositories | filter:searchReposiroty">
+    <div class="col-md-12">
+      <div class="thumbnail">
+        <h3 style="text-align:center;">{{value.name}}</h3>
+        <div class="list-group">
+          <p class="list-group-item">Date: {{value.info.creation_time * 1000 | date: "MM/dd/yyyy à hh:mm:ss"}}</p>
+          <p class="list-group-item">UUID: {{value.info.uuid}}</p>
+          <p class="list-group-item">Description: {{value.info.description}}</p>
+        </div>
+      <h4 style="text-align:center;">Acl</h4>
+        <div class="list-group">
+          <p class="list-group-item" ng-repeat="(member, rights) in value.acl">{{member}}: {{rights}}</p>
+        </div>
+        <hr>
+        <button type="button" name="button" class="btn btn-block btn-success">Update</button>
+        <button type="button" name="button" class="btn btn-block btn-danger">Delete</button>
+      </div>
+    </div>
   </div>
-</div>
-
-<div class="container">
-  <div class="col-sm-12 card" ng-repeat="(key, value) in repositories | filter:searchText"
-    style="color:#fefefe;">
-        <div class="card-title col-sm-8">
-          <h3>{{value.name}}</h3>
-        </div>
-        <div class="card-btn col-sm-4">
-          <div class="btn-group">
-            <button type="button" class="btn btn-success" name="button"><span class="glyphicon glyphicon-upload"></span> Update</button>
-            <button type="button" class="btn btn-danger" name="button"><span class="glyphicon glyphicon-remove"></span> Delete</button>
-          </div>
-        </div>
-        <div class="card-content col-sm-6">
-          <h4>Description</h4>
-          <p>
-            {{value.info.description}}
-          </p>
-          <span class="glyphicon glyphicon-cloud"></span> {{value.info.url}} <br>
-          <span class="glyphicon glyphicon-lock"></span> {{value.info.uuid}} <br>
-          <span class="glyphicon glyphicon-time"></span> {{value.info.creation_time}} <br>
-          <span class="glyphicon glyphicon-asterisk"></span> {{value.type}} <br>
-        </div>
-
-        <div class="card-acl col-sm-6">
-          <h4>Acl</h4>
-          <div class="row">
-            <div class="form-group col-sm-12">
-              <input type="text-align" class="form-control" ng-model="member.name" value="" placeholder="login_x">
-              <input type="text-align" class="form-control" ng-model="member.rights" value="" placeholder="rwa">
-              <button type="button" name="button" class="btn btn-info btn-block">Add Member</button>
-            </div>
-          </div>
-        <div class="row">
-          <table class="table">
-            <thead>
-              <tr>
-                <td>
-                  Name
-                </td>
-                <td>
-                  rights
-                </td>
-                <td style="text-align: right;">
-                  tools
-                </td>
-              </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="(member, rights) in value.acl">
-                  <td>
-                    {{member}}
-                  </td>
-                  <td>
-                    {{rights}}
-                  </td>
-                  <td style="text-align: right;">
-                    <button type="button" class="btn btn-danger" name="button"><span class="glyphicon glyphicon-floppy-remove"></span></button>
-                    <button type="button" class="btn btn-success" name="button"><span class="glyphicon glyphicon-upload"></span></button>
-                  </td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-        </div>
-  </div>
+  <!-- END template data cardView -->
 </div>
