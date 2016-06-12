@@ -12,12 +12,12 @@ A cross-platform application to manage Blih.
 
 #### Technologies
 * Electron
-* AngluarJS
+* AngularJS
 * Bootstrap Twitter
 * GulpJS
-* Blih-api
+* Blih API
 
-#### Developpement
+#### Development
 
 ```sh
 cd app
@@ -34,7 +34,7 @@ gulp serve
 
 #### Production
 
-Create a new directory with minified files and clean Developpement tools
+Create a new directory with minified files and clean developpement tools
 
 ```sh
 gulp build
@@ -53,7 +53,7 @@ gulp build
 * Custom team configuration (0%)
 * Setting (0%)
 
-#### Auteur
+#### Author
 Walter Bonetti (bonett_w Epitech Lyon 2020)
 
-_MIT_
+blih-gui is licensed under the MIT license.
