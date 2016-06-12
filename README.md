@@ -34,7 +34,7 @@ gulp serve
 
 #### Production
 
-Create a new directory with minified files and clean developpement tools
+Create a new directory with minified files and clean development tools
 
 ```sh
 gulp build
